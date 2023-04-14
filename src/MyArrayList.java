@@ -38,4 +38,9 @@ public class MyArrayList<T> implements MyList<T>{
         }
         return (T)realArray[index];
     }
+
+    @Override
+    public int size() {
+        return size;
+    }
 }
