@@ -43,6 +43,10 @@ public class MyArrayList<T> implements MyList<T>{
     public int size() {
         return size;
     }
+    @Override
+    public Iterator<T> iterator() {
+        return new MyIterator();
+    }
 
     private class MyIterator implements Iterator<T> {
         int cursor = 0;
