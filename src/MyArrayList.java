@@ -31,4 +31,11 @@ public class MyArrayList<T> implements MyList<T>{
         realArray[size++] = item;
     }
 
+    @Override
+    public T get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        return (T)realArray[index];
+    }
 }
