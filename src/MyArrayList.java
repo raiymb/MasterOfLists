@@ -43,4 +43,21 @@ public class MyArrayList<T> implements MyList<T>{
     public int size() {
         return size;
     }
+
+    private class MyIterator implements Iterator<T> {
+        int cursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cursor < size;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new IndexOutOfBoundsException();
+            }
+            return (T)realArray[cursor++];
+        }
+    }
 }
