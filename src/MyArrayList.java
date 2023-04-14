@@ -1,4 +1,6 @@
-public class MyArrayList {
+import java.util.Iterator;
+
+public class MyArrayList<T> implements MyList<T>{
     private Object[] realArray;
     private int size;
     public MyArrayList(){
@@ -12,6 +14,13 @@ public class MyArrayList {
         this.realArray =new Object[start_size];
     }
 
-
+    private void increaseCapacity(){
+        int newCapacity = realArray.length*2;
+        Object[] newArray =new Object[newCapacity];
+        for(int i = 0; i< realArray.length; i++){
+            newArray[i] = realArray[i];
+        }
+        realArray = newArray;
+    }
 
 }
