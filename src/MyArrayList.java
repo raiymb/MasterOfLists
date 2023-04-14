@@ -23,4 +23,12 @@ public class MyArrayList<T> implements MyList<T>{
         realArray = newArray;
     }
 
+    @Override
+    public void add(T item) {
+        if (size == realArray.length) {
+            increaseCapacity();
+        }
+        realArray[size++] = item;
+    }
+
 }
