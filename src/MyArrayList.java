@@ -136,6 +136,20 @@ public class MyArrayList<T> implements MyList<T>{
     }
 
     @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < size; i++) {
+            sb.append(realArray[i]);
+            if (i < size - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+    @Override
     public boolean contains(Object o) {
         if (o == null) {
             for (int i = 0; i < size; i++) {

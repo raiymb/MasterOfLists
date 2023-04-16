@@ -10,4 +10,5 @@ public interface MyList<T> extends Iterable<T> {
     int lastIndexOf(Object o);
     int indexOf(Object o);
     void sort();
+    String toString();
 }

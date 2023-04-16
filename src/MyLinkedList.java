@@ -133,6 +133,21 @@ public class MyLinkedList<T> implements MyList<T> {
         }
         return -1;
     }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        MyNode current = head;
+        while (current != null) {
+            sb.append(current.data.toString());
+            if (current.next != null) {
+                sb.append(", ");
+            }
+            current = current.next;
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 
     @Override
     public T remove(int index) {
@@ -158,6 +173,54 @@ public class MyLinkedList<T> implements MyList<T> {
         }
         length--;
         return nodeToRemove.data;
+    }
+    @Override
+    public boolean contains(Object o) {
+        MyNode current = head;
+        while (current != null) {
+            if ((current.data == null && o == null) || (current.data != null && current.data.equals(o))) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    @Override
+    public void sort() {
+        if (head == null || head.next == null) {
+            return;
+        }
+
+        boolean swapped;
+        MyNode current;
+        MyNode previous = null;
+
+        do {
+            swapped = false;
+            current = head;
+
+            while (current.next != null) {
+                if (((Comparable<T>) current.data).compareTo(current.next.data) > 0) {
+                    MyNode temp = current.next;
+                    current.next = temp.next;
+                    temp.next = current;
+
+                    if (previous == null) {
+                        head = temp;
+                    } else {
+                        previous.next = temp;
+                    }
+
+                    previous = temp;
+                    swapped = true;
+                } else {
+                    previous = current;
+                    current = current.next;
+                }
+            }
+            tail = previous;
+        } while (swapped);
     }
 
 
