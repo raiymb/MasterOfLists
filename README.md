@@ -1,5 +1,5 @@
 # MyArrayList and MyLinkedList
-Batyr Raiymbek
+Batyr Raiymbek;
 Group: SE-2202
 
 # Overview
