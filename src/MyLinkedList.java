@@ -67,4 +67,35 @@ public class MyLinkedList<T> implements MyList<T> {
         length--;
         return true;
     }
+
+    @Override
+    public int size() {
+        return length;
+    }
+
+    @Override
+    public boolean remove(T item) {
+        MyNode temp = head;
+        while (temp != null && !temp.data.equals(item)) {
+            temp = temp.next;
+        }
+        if (temp == null) {
+            return false;
+        } else if (temp == head) {
+            head = head.next;
+            if (head != null) {
+                head.prev = null;
+            } else {
+                tail = null;
+            }
+        } else if (temp == tail) {
+            tail = tail.prev;
+            tail.next = null;
+        } else {
+            temp.prev.next = temp.next;
+            temp.next.prev = temp.prev;
+        }
+        length--;
+        return true;
+    }
 }
