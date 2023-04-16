@@ -99,6 +99,27 @@ public class MyArrayList<T> implements MyList<T>{
         }
         return -1;
     }
+    @Override
+    public T remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        T removedElement = (T) realArray[index];
+        System.arraycopy(realArray, index + 1, realArray, index, size - index - 1);
+        realArray[--size] = null;
+        return removedElement;
+    }
+
+    @Override
+    public boolean remove(T item) {
+        for (int i = 0; i < size; i++) {
+            if (item == realArray[i] || (item != null && item.equals(realArray[i]))) {
+                remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public boolean contains(Object o) {
