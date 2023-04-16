@@ -79,6 +79,33 @@ public class MyLinkedList<T> implements MyList<T> {
         length = 0;
     }
 
+    @Override
+    public void add(T item, int index) {
+        if (index < 0 || index > length) throw new IndexOutOfBoundsException();
+        MyNode newNode = new MyNode(item);
+        if (index == length) {
+            add(item);
+            return;
+        }
+        if (index == 0) {
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+            length++;
+            return;
+        }
+
+        MyNode temp = head;
+        for (int i = 0; i < index - 1; i++) {
+            temp = temp.next;
+        }
+
+        newNode.prev = temp;
+        newNode.next = temp.next;
+        temp.next.prev = newNode;
+        temp.next = newNode;
+        length++;
+    }
 
     @Override
     public Iterator<T> iterator() {
@@ -100,4 +127,5 @@ public class MyLinkedList<T> implements MyList<T> {
             return data;
         }
     }
+
 }
