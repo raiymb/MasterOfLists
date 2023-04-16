@@ -56,8 +56,6 @@ String toString()
 Returns a string representation of the list.
 
 # Example
-public class Main {
-    public static void main(String[] args) {
         // MyArrayList tests
         MyArrayList<Integer> arrList = new MyArrayList<>();
         arrList.add(5);
@@ -89,5 +87,4 @@ public class Main {
         System.out.println(linkedList); // [apple, grape, orange]
         linkedList.clear();
         System.out.println(linkedList); // []
-    }
-}
+    
