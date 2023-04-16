@@ -108,6 +108,60 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     @Override
+    public int indexOf(Object o) {
+        int index = 0;
+        MyNode temp = head;
+        while (temp != null) {
+            if (temp.data.equals(o)) {
+                return index;
+            }
+            temp = temp.next;
+            index++;
+        }
+        return -1;
+    }
+    @Override
+    public int lastIndexOf(Object o) {
+        int index = length - 1;
+        MyNode temp = tail;
+        while (temp != null) {
+            if (temp.data.equals(o)) {
+                return index;
+            }
+            temp = temp.prev;
+            index--;
+        }
+        return -1;
+    }
+
+    @Override
+    public T remove(int index) {
+        if (index >= length) throw new IndexOutOfBoundsException();
+        MyNode nodeToRemove;
+        if (index == 0) {
+            nodeToRemove = head;
+            head = head.next;
+            if (head != null) head.prev = null;
+            else tail = null;
+        } else if (index == length - 1) {
+            nodeToRemove = tail;
+            tail = tail.prev;
+            tail.next = null;
+        } else {
+            MyNode temp = head;
+            for (int i = 0; i < index - 1; i++) {
+                temp = temp.next;
+            }
+            nodeToRemove = temp.next;
+            temp.next = temp.next.next;
+            temp.next.prev = temp;
+        }
+        length--;
+        return nodeToRemove.data;
+    }
+
+
+    @Override
     public Iterator<T> iterator() {
         return new MyLinkedListIterator();
     }
