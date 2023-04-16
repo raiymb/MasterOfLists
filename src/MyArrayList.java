@@ -56,6 +56,41 @@ public class MyArrayList<T> implements MyList<T>{
             }
         }
     }
+    @Override
+    public int indexOf(Object o) {
+        if (o == null) {
+            for (int i = 0; i < size; i++) {
+                if (realArray[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (o.equals(realArray[i])) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        if (o == null) {
+            for (int i = size - 1; i >= 0; i--) {
+                if (realArray[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = size - 1; i >= 0; i--) {
+                if (o.equals(realArray[i])) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
 
     @Override
     public Iterator<T> iterator() {
