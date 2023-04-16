@@ -100,6 +100,20 @@ public class MyArrayList<T> implements MyList<T>{
         return -1;
     }
     @Override
+    public void add(T item, int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        if (size == realArray.length) {
+            increaseCapacity();
+        }
+        for (int i = size; i > index; i--) {
+            realArray[i] = realArray[i-1];
+        }
+        realArray[index] = item;
+        size++;
+    }
+    @Override
     public T remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
