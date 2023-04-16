@@ -43,6 +43,20 @@ public class MyArrayList<T> implements MyList<T>{
     public int size() {
         return size;
     }
+
+    @Override
+    public void sort() {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                if (((Comparable<T>) realArray[j]).compareTo((T) realArray[j + 1]) > 0) {
+                    T temp = (T) realArray[j];
+                    realArray[j] = realArray[j + 1];
+                    realArray[j + 1] = temp;
+                }
+            }
+        }
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new MyIterator();
@@ -62,6 +76,11 @@ public class MyArrayList<T> implements MyList<T>{
                 throw new IndexOutOfBoundsException();
             }
             return (T)realArray[cursor++];
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
         }
     }
 }
