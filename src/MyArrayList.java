@@ -155,10 +155,10 @@ public class MyArrayList<T> implements MyList<T>{
 
     @Override
     public Iterator<T> iterator() {
-        return new MyIterator();
+        return new MyArrayListIterator();
     }
 
-    private class MyIterator implements Iterator<T> {
+    private class MyArrayListIterator implements Iterator<T> {
         int cursor = 0;
 
         @Override

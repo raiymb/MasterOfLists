@@ -74,28 +74,30 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     @Override
-    public boolean remove(T item) {
-        MyNode temp = head;
-        while (temp != null && !temp.data.equals(item)) {
-            temp = temp.next;
+    public void clear() {
+        head = tail = null;
+        length = 0;
+    }
+
+
+    @Override
+    public Iterator<T> iterator() {
+        return new MyLinkedListIterator();
+    }
+
+    private class MyLinkedListIterator implements Iterator<T> {
+        MyNode cursor = head;
+
+        @Override
+        public boolean hasNext() {
+            return cursor != null;
         }
-        if (temp == null) {
-            return false;
-        } else if (temp == head) {
-            head = head.next;
-            if (head != null) {
-                head.prev = null;
-            } else {
-                tail = null;
-            }
-        } else if (temp == tail) {
-            tail = tail.prev;
-            tail.next = null;
-        } else {
-            temp.prev.next = temp.next;
-            temp.next.prev = temp.prev;
+
+        @Override
+        public T next() {
+            T data = cursor.data;
+            cursor = cursor.next;
+            return data;
         }
-        length--;
-        return true;
     }
 }
