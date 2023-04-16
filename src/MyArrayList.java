@@ -45,6 +45,14 @@ public class MyArrayList<T> implements MyList<T>{
     }
 
     @Override
+    public void clear() {
+        for (int i = 0; i < size; i++) {
+            realArray[i] = null;
+        }
+        size = 0;
+    }
+
+    @Override
     public void sort() {
         for (int i = 0; i < size - 1; i++) {
             for (int j = 0; j < size - i - 1; j++) {
@@ -90,6 +98,24 @@ public class MyArrayList<T> implements MyList<T>{
             }
         }
         return -1;
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        if (o == null) {
+            for (int i = 0; i < size; i++) {
+                if (realArray[i] == null) {
+                    return true;
+                }
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (o.equals(realArray[i])) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
