@@ -3,9 +3,9 @@ import java.util.Iterator;
 public class MyLinkedList<T> implements MyList<T> {
 
     private class MyNode {
-        private final T data;
-        private MyNode next;
-        private MyNode prev;
+        private final T data; // The data stored in the node
+        private MyNode next; // The next node in the list
+        private MyNode prev; // The previous node in the list
 
         public MyNode(T data) {
             this.data = data;
@@ -14,23 +14,23 @@ public class MyLinkedList<T> implements MyList<T> {
 
     private MyNode head; // entry point
     private MyNode tail; // exit point
-    private int length;
+    private int length; // The number of nodes in the list
 
     @Override
     public void add(T item) {
-        MyNode newNode = new MyNode(item);
+        MyNode newNode = new MyNode(item); // Create a new node with the given item
         length++;
+        // If the list is empty, set the head and tail to the new node
         if (head == null) {
-            head = tail = newNode;
+            head = tail = newNode; // Set both head and tail to the new node
             return;
         }
-
+        // Otherwise, add the new node to the end of the list
         tail.next = newNode;
         newNode.prev = tail;
         tail = newNode;
     }
 
-    // O(N)
     @Override
     public T get(int index) {
         if (index >= length) throw new IndexOutOfBoundsException();
@@ -185,7 +185,11 @@ public class MyLinkedList<T> implements MyList<T> {
         }
         return false;
     }
-
+    /*
+    This method is an implementation of the Bubble Sort algorithm for sorting a linked list.
+    If the linked list is null or contains only one element, it returns without sorting.
+    It uses the Comparable interface to compare elements for sorting.
+     */
     @Override
     public void sort() {
         if (head == null || head.next == null) {
@@ -201,11 +205,13 @@ public class MyLinkedList<T> implements MyList<T> {
             current = head;
 
             while (current.next != null) {
+                // Compare the current node and the next node and swap them if necessary
                 if (((Comparable<T>) current.data).compareTo(current.next.data) > 0) {
                     MyNode temp = current.next;
                     current.next = temp.next;
                     temp.next = current;
 
+                    // Update the previous node's next pointer to point to the swapped node
                     if (previous == null) {
                         head = temp;
                     } else {
@@ -215,12 +221,13 @@ public class MyLinkedList<T> implements MyList<T> {
                     previous = temp;
                     swapped = true;
                 } else {
+                    // If no swapping occurred, move the current and previous pointers forward
                     previous = current;
                     current = current.next;
                 }
             }
-            tail = previous;
-        } while (swapped);
+            tail = previous;  // Update the tail pointer to the last node after each iteration
+        } while (swapped);  // Continue iterating until no swapping occurs
     }
 
 

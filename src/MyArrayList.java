@@ -54,7 +54,7 @@ public class MyArrayList<T> implements MyList<T>{
 
     @Override
     public void sort() {
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size - 1; i++) {            // bubble sort algorithm
             for (int j = 0; j < size - i - 1; j++) {
                 if (((Comparable<T>) realArray[j]).compareTo((T) realArray[j + 1]) > 0) {
                     T temp = (T) realArray[j];
